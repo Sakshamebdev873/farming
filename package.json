@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Sakshamebdev873/farming#readme",
   "dependencies": {
+    "@prisma/client": "^6.18.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.19",
     "@types/dotenv": "^6.1.1",
@@ -35,10 +36,10 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
     "nodemon": "^3.1.10",
-    "prisma": "^6.18.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/node": "^24.9.1"
+    "@types/node": "^24.9.1",
+    "prisma": "^6.18.0"
   }
 }
