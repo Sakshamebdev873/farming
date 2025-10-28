@@ -5,8 +5,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet'; // For security headers
 import morgan from 'morgan'; // For logging
-import { notFound, errorHandler } from './middleware/error.middleware';
-import authRoutes from './routes/auth.routes';
+import { notFound, errorHandler } from './middleware/error.middleware.js';
+import authRoutes from './routes/auth.routes.js';
 
 // Load .env variables
 dotenv.config();
