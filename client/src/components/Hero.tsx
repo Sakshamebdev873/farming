@@ -40,7 +40,7 @@ const LeafIcon = ({ className }: { className?: string }) => (
 // Star icon for the "trust" section
 const StarIcon = () => (
   <svg
-    className="h-5 w-5 text-ks-amber-400"
+    className="h-5 w-5 text--amber-400"
     viewBox="0 0 20 20"
     fill="currentColor"
     aria-hidden="true"
@@ -106,24 +106,24 @@ export const Hero = () => {
               animate="visible"
             >
               <motion.span
-                className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-ks-green-100 text-ks-green-800"
+                className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg--green-100 text--green-800"
                 variants={itemVariants}
               >
                 Aapka Smart Farming Saathi
               </motion.span>
 
               <motion.h1
-                className="mt-4 text-4xl tracking-tight font-extrabold text-ks-stone-900 sm:text-5xl md:text-6xl"
+                className="mt-4 text-4xl tracking-tight font-extrabold text--stone-900 sm:text-5xl md:text-6xl"
                 variants={itemVariants}
               >
                 <span className="block">Get Instant Crop Advice</span>
-                <span className="block text-ks-green-700">
+                <span className="block text--green-700">
                   Boost Your Yield
                 </span>
               </motion.h1>
 
               <motion.p
-                className="mt-6 text-lg text-ks-stone-600 sm:text-xl"
+                className="mt-6 text-lg text--stone-600 sm:text-xl"
                 variants={itemVariants}
               >
                 Stop guessing, start growing. Kisaan Saathi uses powerful AI to
@@ -146,7 +146,7 @@ export const Hero = () => {
     }}
     whileTap={{ scale: 0.95 }}
     transition={{ type: "spring", stiffness: 300 }}
-    className="inline-block w-full sm:w-auto px-8 py-3.5 rounded-lg text-lg font-semibold text-center text-white bg-green-500 shadow-lg hover:shadow-amber-500/40 focus:outline-none focus:ring-2 focus:ring-ks-amber-500 focus:ring-offset-2 transition-all duration-300 transform"
+    className="inline-block w-full sm:w-auto px-8 py-3.5 rounded-lg text-lg font-semibold text-center text-white bg-green-500 shadow-lg hover:shadow-amber-500/40 focus:outline-none focus:ring-2 focus:ring--amber-500 focus:ring-offset-2 transition-all duration-300 transform"
   >
     Scan Your Crop Now
   </motion.a>
@@ -161,7 +161,7 @@ export const Hero = () => {
     }}
     whileTap={{ scale: 0.95 }}
     transition={{ type: "spring", stiffness: 300 }}
-    className="mt-4 sm:mt-0 inline-block w-full sm:w-auto px-8 py-3.5 rounded-lg text-lg font-medium text-center text-ks-green-800 bg-ks-green-100 ring-1 ring-ks-green-200 focus:outline-none focus:ring-2 focus:ring-ks-green-500 focus:ring-offset-2 transition-all duration-300"
+    className="mt-4 sm:mt-0 inline-block w-full sm:w-auto px-8 py-3.5 rounded-lg text-lg font-medium text-center text--green-800 bg--green-100 ring-1 ring--green-200 focus:outline-none focus:ring-2 focus:ring--green-500 focus:ring-offset-2 transition-all duration-300"
   >
     Learn More
   </motion.a>
@@ -196,11 +196,11 @@ export const Hero = () => {
                     <StarIcon />
                   </div>
                 </div>
-                <p className="mt-2 text-sm font-medium text-ks-stone-600">
+                <p className="mt-2 text-sm font-medium text--stone-600">
                   Rated{' '}
-                  <span className="font-bold text-ks-stone-800">4.8/5</span> by
+                  <span className="font-bold text--stone-800">4.8/5</span> by
                   over{' '}
-                  <span className="font-bold text-ks-stone-800">
+                  <span className="font-bold text--stone-800">
                     1,500+ farmers
                   </span>
                   .
@@ -212,7 +212,7 @@ export const Hero = () => {
             <div className="relative mt-12 lg:mt-0 lg:col-span-6 flex items-center justify-center h-64 lg:h-full">
               {/* We use Framer Motion to animate a "constellation" of leaves */}
               <motion.div
-                className="absolute top-10 left-10 text-ks-green-400" /* New Growth Green */
+                className="absolute top-10 left-10 text--green-400" /* New Growth Green */
                 animate={{ y: [-5, 10], opacity: [0.3, 1, 0.3] }}
                 transition={{
                   repeat: Infinity,
@@ -225,7 +225,7 @@ export const Hero = () => {
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 left-1/2 text-ks-green-800" /* Deep Forest Green */
+                className="absolute top-1/2 left-1/2 text--green-800" /* Deep Forest Green */
                 animate={{ y: [8, -8], opacity: [0.5, 1, 0.5] }}
                 transition={{
                   repeat: Infinity,
@@ -238,7 +238,7 @@ export const Hero = () => {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-10 right-10 text-ks-amber-400" /* Sunflower/Wheat Yellow */
+                className="absolute bottom-10 right-10 text--amber-400" /* Sunflower/Wheat Yellow */
                 animate={{ y: [-10, 5], opacity: [0.4, 1, 0.4] }}
                 transition={{
                   repeat: Infinity,
@@ -251,7 +251,7 @@ export const Hero = () => {
               </motion.div>
 
               <motion.div
-                className="absolute top-20 right-20 text-ks-amber-900" /* Earthy Brown */
+                className="absolute top-20 right-20 text--amber-900" /* Earthy Brown */
                 animate={{ y: [5, -5], opacity: [0.2, 0.8, 0.2] }}
                 transition={{
                   repeat: Infinity,
@@ -264,7 +264,7 @@ export const Hero = () => {
               </motion.div>
               
               <motion.div
-                className="absolute bottom-1/2 right-1/4 text-ks-stone-300" /* Light Stone */
+                className="absolute bottom-1/2 right-1/4 text--stone-300" /* Light Stone */
                 animate={{ y: [-5, 5], opacity: [0.1, 0.5, 0.1] }}
                 transition={{
                   repeat: Infinity,

@@ -73,7 +73,7 @@ export const Impact = () => {
   ];
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from--stone-50 via-white to--green-50 overflow-hidden">
+    <section className="relative py-24 bg-linear-to-b from--stone-50 via-white to--green-50 overflow-hidden">
       {/* Decorative Blobs */}
       <motion.div
         className="absolute -top-32 -left-32 w-96 h-96 bg--green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
@@ -122,7 +122,7 @@ export const Impact = () => {
                 className="group relative p-8  bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
               >
                 {/* Animated Border Glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from--green-200/20 to--amber-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-br from--green-200/20 to--amber-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
                   <div className="p-4 bg--amber-100 text--amber-600 rounded-full inline-block shadow-sm">

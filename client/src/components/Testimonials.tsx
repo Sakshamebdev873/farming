@@ -24,7 +24,7 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-amber-50 via-white to-green-50 overflow-hidden">
+    <section className="relative py-24 g from-amber-50 via-white to-green-50 overflow-hidden">
       <div className="relative max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-green-600 font-semibold uppercase tracking-wide">
           Testimonials

@@ -3,44 +3,66 @@
  * It symbolizes a hand ("Saathi" - companion) gently holding
  * a new sprout ("Kisaan" - farming/growth) within a protective circle.
  */
+import React from 'react';
+
 export const LogoSvg = ({ className = 'w-10 h-10' }: { className?: string }) => (
   <svg
     className={className}
-    viewBox="0 0 24 24"
+    viewBox="0 0 64 64"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+    {/* Hand (support) */}
     <path
-      d="M14 9.5C14 8.67157 13.3284 8 12.5 8C11.6716 8 11 8.67157 11 9.5C11 10.3284 11.6716 11 12.5 11C13.3284 11 14 10.3284 14 9.5Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    />
-    <path
-      d="M12.5 8C12.5 8 12.5 7.5 12.5 6C12.5 3.79086 14.2909 2 16.5 2C18.7091 2 20.5 3.79086 20.5 6C20.5 7.5 20.5 8 20.5 8"
-      stroke="currentColor"
-      strokeWidth="1.5"
+      d="M10 38c3 4 8 8 16 8h8c5 0 9 2 12 4s6 4 10 0"
+      stroke="#15803d"
+      strokeWidth="3"
       strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
     />
     <path
-      d="M11 9.5C11 9.5 9 10.5 9 13C9 15.5 11 16.5 11 16.5"
-      stroke="currentColor"
-      strokeWidth="1.5"
+      d="M12 42c3 3 7 6 14 6h8c4 0 7 1 10 3"
+      stroke="#4ade80"
+      strokeWidth="2"
       strokeLinecap="round"
+      strokeLinejoin="round"
+      opacity="0.8"
     />
+
+    {/* Sprouting seed */}
     <path
-      d="M14 9.5C14 9.5 16 10.5 16 13C16 15.5 14 16.5 14 16.5"
-      stroke="currentColor"
-      strokeWidth="1.5"
+      d="M30 24c0-6 6-10 10-10 4 0 8 4 8 8s-4 8-8 8c-1 0-3 0-4-1v3"
+      stroke="#16a34a"
+      strokeWidth="3"
       strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
     />
-    <path
-      d="M3.5 18C3.5 15.2386 5.73858 13 8.5 13H16.5C19.2614 13 21.5 15.2386 21.5 18V20.5C21.5 21.3284 20.8284 22 20 22H5C4.17157 22 3.5 21.3284 3.5 20.5V18Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-    />
+
+    {/* Small seed base */}
+    <circle cx="34" cy="34" r="3" fill="#22c55e" />
+
+    {/* Decorative glow behind seed */}
+    <circle cx="34" cy="26" r="10" fill="url(#glow)" opacity="0.3" />
+
+    <defs>
+      <radialGradient
+        id="glow"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(34 26) scale(10)"
+      >
+        <stop stopColor="#bbf7d0" />
+        <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+      </radialGradient>
+    </defs>
   </svg>
 );
+
+
 
 export const LeafScanIcon = ({ className = 'w-8 h-8' }: { className?: string }) => (
   <svg
@@ -136,88 +158,7 @@ export const ArrowRightIcon = ({ className = 'w-5 h-5' }: { className?: string }
     />
   </svg>
 );
-export const HowItWorksIcon = ({ className = 'w-8 h-8' }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <path d="M10 8h4v8h-4z" />
-    <path d="M8 10h8" />
-  </svg>
-);
 
-export const ImpactIcon = ({ className = 'w-8 h-8' }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 2v4" />
-    <path d="M12 18v4" />
-    <path d="M4.93 4.93l2.83 2.83" />
-    <path d="M16.24 16.24l2.83 2.83" />
-    <path d="M2 12h4" />
-    <path d="M18 12h4" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
-export const TestimonialsIcon = ({ className = 'w-8 h-8' }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M7 8h10M7 12h8M5 16h6" />
-    <path d="M5 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4l-4 4-4-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
-  </svg>
-);
-
-export const FAQIcon = ({ className = 'w-8 h-8' }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <path d="M9.09 9a3 3 0 1 1 5.82 1c0 1.5-1.5 2-1.5 2" />
-    <path d="M12 17h.01" />
-  </svg>
-);
-
-export const FooterIcon = ({ className = 'w-8 h-8' }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-    <path d="M3 15h18" />
-    <path d="M9 21v-6" />
-  </svg>
-);
 
 export const CameraIcon = ({ className = 'w-8 h-8' }: { className?: string }) => (
   <svg
