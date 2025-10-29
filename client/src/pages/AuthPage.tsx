@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-// Import the logo we created. Adjust the path if this file is not in `src/pages/`
 import { LogoSvg } from "../icons";
 
 const AuthPage = () => {
@@ -13,20 +12,18 @@ const AuthPage = () => {
 
   const handleAuth = (e: React.FormEvent) => {
     e.preventDefault();
-    const hardcodedEmail = "test@kisaansaathi.com"; // Updated email
-    const hardcodedPassword = "password123"; // Updated password
+    const hardcodedEmail = "test@kisaansaathi.com";
+    const hardcodedPassword = "password123";
 
     if (isLogin) {
       if (email === hardcodedEmail && password === hardcodedPassword) {
-        navigate("/dashboard"); // Navigate on success
+        navigate("/dashboard");
       } else {
         setError("Invalid credentials. Try again.");
       }
     } else {
-      // For demo, any valid-looking signup works
       if (email && password.length >= 6) {
-        // In a real app, you'd create the user here
-        navigate("/dashboard"); // Navigate on success
+        navigate("/dashboard");
       } else {
         setError("Please enter a valid email and password (min 6 chars).");
       }
@@ -41,7 +38,6 @@ const AuthPage = () => {
         transition={{ type: "spring", stiffness: 100 }}
         className="bg-white shadow-2xl rounded-2xl p-8 sm:p-10 w-full max-w-md"
       >
-        {/* --- Added Logo --- */}
         <div className="flex justify-center mb-6">
           <LogoSvg className="h-16 w-16 text-green-700" />
         </div>
@@ -104,6 +100,16 @@ const AuthPage = () => {
           </button>
         </form>
 
+        {/* 🌿 Back to Home button */}
+        <div className="mt-4 text-center">
+          <button
+            onClick={() => navigate("/")}
+            className="text-green-700 font-semibold hover:text-green-800 hover:underline transition"
+          >
+            ← Back to Home
+          </button>
+        </div>
+
         <p className="mt-6 text-center text-sm text-stone-600">
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
@@ -122,4 +128,5 @@ const AuthPage = () => {
     </div>
   );
 };
+
 export default AuthPage;
