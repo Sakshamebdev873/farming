@@ -1,15 +1,42 @@
 import React, { useState } from "react";
-import {
-  SproutIcon,
-  MapIcon,
-  CalendarIcon,
-  BarChart3Icon,
-  CloudSunIcon,
-  CheckCircle2Icon,
-  PlusCircleIcon,
-  XIcon,
-} from "lucide-react";
+import { SproutIcon, PlusCircleIcon, XIcon, ImageIcon } from "lucide-react";
 
+const mockDiseaseData = [
+  {
+    disease: "Rust Fungus",
+    symptoms: "Yellow-orange pustules on leaves and stems",
+    cure: "Spray Propiconazole (Tilt 25 EC) 1ml/litre water",
+    prevention: "Avoid over-irrigation and use rust-resistant varieties",
+  },
+  {
+    disease: "Bacterial Leaf Blight",
+    symptoms: "Yellowing and drying of leaves from tip downward",
+    cure: "Spray Streptocycline 0.1g/litre + Copper oxychloride 2g/litre",
+    prevention: "Use clean seeds and avoid water stagnation",
+  },
+  {
+    disease: "Powdery Mildew",
+    symptoms: "White powdery coating on leaves and stems",
+    cure: "Spray sulfur-based fungicides (2g/litre)",
+    prevention: "Avoid dense planting and improve air circulation",
+  },
+  {
+    disease: "Early Blight",
+    symptoms: "Brown concentric spots on lower leaves",
+    cure: "Spray Chlorothalonil or Mancozeb 2g/litre water",
+    prevention: "Use certified seeds and avoid overhead irrigation",
+  },
+  {
+    disease: "Downy Mildew",
+    symptoms: "Pale yellow patches on upper leaf surfaces",
+    cure: "Spray Metalaxyl or Mancozeb 2g/litre water",
+    prevention: "Avoid waterlogging and provide proper spacing",
+  },
+];
+
+const getRandomDisease = () => {
+  return mockDiseaseData[Math.floor(Math.random() * mockDiseaseData.length)];
+};
 
 const CropPlans = () => {
   const [cropPlans, setCropPlans] = useState([
@@ -18,174 +45,114 @@ const CropPlans = () => {
       crop: "Wheat",
       area: "5 Acres",
       soilType: "Loamy",
-      status: "Ongoing",
-      nextAction: "Irrigation on Nov 2",
-      profitEstimate: "₹65,000",
-      progress: 70,
-      weather: "Moderate 🌤️",
+      image: "https://plus.unsplash.com/premium_photo-1661963447711-27f892ffe292?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2hlYXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
+      diseaseInfo: getRandomDisease(),
     },
     {
       id: 2,
       crop: "Rice",
       area: "3 Acres",
       soilType: "Clay",
-      status: "Upcoming",
-      nextAction: "Sowing in 3 Days",
-      profitEstimate: "₹48,000",
-      progress: 10,
-      weather: "Humid 🌦️",
+      image: "https://plus.unsplash.com/premium_photo-1705338026411-00639520a438?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cmljZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+      diseaseInfo: getRandomDisease(),
     },
   ]);
 
   const [showForm, setShowForm] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [newPlan, setNewPlan] = useState({
     crop: "",
     area: "",
     soilType: "",
-    nextAction: "",
-    profitEstimate: "",
+    image: "",
   });
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setNewPlan({ ...newPlan, image: imageUrl });
+    }
+  };
+
   const handleAddPlan = () => {
-    if (
-      !newPlan.crop ||
-      !newPlan.area ||
-      !newPlan.soilType ||
-      !newPlan.nextAction ||
-      !newPlan.profitEstimate
-    ) {
-      alert("Please fill all fields before adding a crop plan.");
+    if (!newPlan.crop || !newPlan.area || !newPlan.soilType || !newPlan.image) {
+      alert("Please fill all fields and upload an image.");
       return;
     }
 
-    const newCrop = {
-      ...newPlan,
-      id: Date.now(),
-      status: "Upcoming",
-      progress: 0,
-      weather: "TBD 🌤️",
-    };
+    setIsAnalyzing(true);
 
-    setCropPlans([...cropPlans, newCrop]);
-    setNewPlan({
-      crop: "",
-      area: "",
-      soilType: "",
-      nextAction: "",
-      profitEstimate: "",
-    });
-    setShowForm(false);
+    setTimeout(() => {
+      const diseaseInfo = getRandomDisease();
+      const newCrop = {
+        ...newPlan,
+        id: Date.now(),
+        diseaseInfo,
+      };
+
+      setCropPlans([...cropPlans, newCrop]);
+      setNewPlan({ crop: "", area: "", soilType: "", image: "" });
+      setIsAnalyzing(false);
+      setShowForm(false);
+      alert(
+        `Mock Analysis Complete 🌾\nDetected: ${diseaseInfo.disease}\nCure: ${diseaseInfo.cure}`
+      );
+    }, 2500); // Mock 2.5 sec ML analysis
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12 relative">
+    <div className="max-w-7xl mx-auto px-6 py-10 relative">
       <h1 className="text-3xl font-bold text-green-800 mb-6 text-center flex justify-center items-center gap-2">
         <SproutIcon className="h-8 w-8 text-green-700" />
-        My Crop Plans Dashboard 🌾
+        Smart Crop Plans 🌾
       </h1>
 
-      {/* Summary Cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <div className="bg-green-100 rounded-xl shadow p-5">
-          <MapIcon className="h-6 w-6 text-green-600" />
-          <h3 className="text-lg font-semibold mt-2">Total Crops</h3>
-          <p className="text-gray-700 text-sm mt-1">{cropPlans.length}</p>
-        </div>
-
-        <div className="bg-blue-100 rounded-xl shadow p-5">
-          <CloudSunIcon className="h-6 w-6 text-blue-600" />
-          <h3 className="text-lg font-semibold mt-2">Weather Status</h3>
-          <p className="text-gray-700 text-sm mt-1">Mostly Clear ☀️</p>
-        </div>
-
-        <div className="bg-amber-100 rounded-xl shadow p-5">
-          <BarChart3Icon className="h-6 w-6 text-amber-600" />
-          <h3 className="text-lg font-semibold mt-2">Total Profit</h3>
-          <p className="text-gray-700 text-sm mt-1">₹1,13,000</p>
-        </div>
-
-        <div className="bg-pink-100 rounded-xl shadow p-5">
-          <CalendarIcon className="h-6 w-6 text-pink-600" />
-          <h3 className="text-lg font-semibold mt-2">Next Task</h3>
-          <p className="text-gray-700 text-sm mt-1">Irrigation in 2 days</p>
-        </div>
-      </div>
-
       {/* Crop Cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {cropPlans.map((plan) => (
           <div
             key={plan.id}
             className="bg-white rounded-2xl shadow-lg p-6 border border-green-100 hover:shadow-xl transition"
           >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-green-800 flex items-center gap-2">
-                <SproutIcon className="h-6 w-6 text-green-700" />
-                {plan.crop}
-              </h2>
-              <span
-                className={`text-sm px-3 py-1 rounded-full ${
-                  plan.status === "Completed"
-                    ? "bg-green-100 text-green-700"
-                    : plan.status === "Ongoing"
-                    ? "bg-amber-100 text-amber-700"
-                    : "bg-blue-100 text-blue-700"
-                }`}
-              >
-                {plan.status}
-              </span>
-            </div>
-
-            <div className="space-y-2 text-gray-700">
-              <p>
-                <strong>Area:</strong> {plan.area}
-              </p>
-              <p>
-                <strong>Soil Type:</strong> {plan.soilType}
-              </p>
-              <p>
-                <strong>Next Action:</strong> {plan.nextAction}
-              </p>
-              <p>
-                <strong>Profit Estimate:</strong> {plan.profitEstimate}
-              </p>
-              <p>
-                <strong>Weather:</strong> {plan.weather}
-              </p>
-            </div>
-
-            {/* Progress bar */}
-            <div className="mt-4">
-              <div className="flex justify-between text-sm text-gray-600">
-                <span>Progress</span>
-                <span>{plan.progress}%</span>
-              </div>
-              <div className="w-full bg-gray-200 h-2 rounded-full mt-1">
-                <div
-                  className={`h-2 rounded-full ${
-                    plan.progress === 100
-                      ? "bg-green-600"
-                      : plan.progress > 50
-                      ? "bg-amber-500"
-                      : "bg-blue-400"
-                  }`}
-                  style={{ width: `${plan.progress}%` }}
-                ></div>
-              </div>
-            </div>
-
-            {plan.progress === 100 && (
-              <div className="mt-4 text-green-700 text-sm flex items-center gap-2 font-medium">
-                <CheckCircle2Icon className="h-5 w-5" />
-                Harvest Completed Successfully
-              </div>
+            <h2 className="text-xl font-semibold text-green-800 mb-3 flex items-center gap-2">
+              <SproutIcon className="h-6 w-6 text-green-700" />
+              {plan.crop}
+            </h2>
+            {plan.image && (
+              <img
+                src={plan.image}
+                alt={plan.crop}
+                className="w-full h-40 object-cover rounded-lg mb-4"
+              />
             )}
+            <p className="text-sm text-gray-700">
+              <strong>Area:</strong> {plan.area}
+            </p>
+            <p className="text-sm text-gray-700 mb-3">
+              <strong>Soil Type:</strong> {plan.soilType}
+            </p>
+
+            <div className="bg-green-50 p-3 rounded-lg">
+              <p className="font-semibold text-green-700">
+                🦠 Disease Detected: {plan.diseaseInfo.disease}
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Symptoms:</strong> {plan.diseaseInfo.symptoms}
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Cure:</strong> {plan.diseaseInfo.cure}
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Prevention:</strong> {plan.diseaseInfo.prevention}
+              </p>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Add New Crop Plan Button */}
-      <div className="text-center mt-12">
+      <div className="text-center">
         <button
           onClick={() => setShowForm(true)}
           className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow font-semibold transition flex items-center justify-center mx-auto gap-2"
@@ -209,21 +176,53 @@ const CropPlans = () => {
             </h2>
 
             <div className="space-y-4">
-              {Object.keys(newPlan).map((key) => (
+              <input
+                type="text"
+                placeholder="Crop Name"
+                value={newPlan.crop}
+                onChange={(e) =>
+                  setNewPlan({ ...newPlan, crop: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Area (e.g. 2 Acres)"
+                value={newPlan.area}
+                onChange={(e) =>
+                  setNewPlan({ ...newPlan, area: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Soil Type (e.g. Loamy)"
+                value={newPlan.soilType}
+                onChange={(e) =>
+                  setNewPlan({ ...newPlan, soilType: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+              />
+
+              <div className="border border-gray-300 rounded-lg p-3 flex items-center justify-between">
+                <label className="flex items-center gap-2 text-gray-700">
+                  <ImageIcon className="h-5 w-5 text-green-600" />
+                  Upload Crop Image
+                </label>
                 <input
-                  key={key}
-                  type="text"
-                  placeholder={
-                    key.charAt(0).toUpperCase() +
-                    key.slice(1).replace(/([A-Z])/g, " $1")
-                  }
-                  value={newPlan[key as keyof typeof newPlan]}
-                  onChange={(e) =>
-                    setNewPlan({ ...newPlan, [key]: e.target.value })
-                  }
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
                 />
-              ))}
+              </div>
+
+              {newPlan.image && (
+                <img
+                  src={newPlan.image}
+                  alt="Preview"
+                  className="w-full h-40 object-cover rounded-lg"
+                />
+              )}
             </div>
 
             <div className="mt-6 flex justify-end gap-3">
@@ -236,8 +235,9 @@ const CropPlans = () => {
               <button
                 onClick={handleAddPlan}
                 className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium"
+                disabled={isAnalyzing}
               >
-                Save Plan
+                {isAnalyzing ? "Analyzing..." : "Save Plan"}
               </button>
             </div>
           </div>
@@ -246,4 +246,5 @@ const CropPlans = () => {
     </div>
   );
 };
+
 export default CropPlans;
